@@ -31,9 +31,17 @@ class App extends Component {
     localStorage.setItem('tasks', JSON.stringify(tasks))
     this.setState({allTasks: tasks})
   }
+
+  onUpdateTask (id, newDesc) {
+    let tasks = this.state.allTasks.slice()
+    let changedIndex = tasks.findIndex((t) => { return t.id === id })
+    tasks[changedIndex].desc = newDesc
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    this.setState({allTasks: tasks})
+  }
   render () {
     const tasks = this.state.allTasks.slice()
-    const OpenTasksList = tasks.filter(t => { return t.category === 'open' }).map((t) => <OpenTasks key={t.id} task={t} onCompletion={(id) => this.onClickingTaskCheckbox(id)} />)
+    const OpenTasksList = tasks.filter(t => { return t.category === 'open' }).map((t) => <OpenTasks key={t.id} task={t} onCompletion={(id) => this.onClickingTaskCheckbox(id)} updateTask={(id, newDesc) => this.onUpdateTask(id, newDesc)} />)
     const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' }).map((t) => <ClosedTasks key={t.id} task={t} onUndo={(id) => this.onClickingTaskCheckbox(id)} />)
     return (
       <div>
