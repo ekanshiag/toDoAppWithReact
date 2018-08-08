@@ -15,15 +15,21 @@ class App extends Component {
       allTasks: allTasks
     }
   }
+  addNewTask (task) {
+    let tasks = this.state.allTasks.slice()
+    tasks.push({'desc': task, 'category': 'open'})
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    this.setState({allTasks: tasks})
+  }
   render () {
     const tasks = this.state.allTasks.slice()
-    const OpenTasksList = tasks.filter(t => { return t.category === 'open' }).map((t) => <OpenTasks task={t} />)
-    const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' }).map((t) => <ClosedTasks task={t} />)
+    const OpenTasksList = tasks.filter(t => { return t.category === 'open' }).map((t, i) => <OpenTasks key={i} task={t} />)
+    const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' }).map((t, i) => <ClosedTasks key={i} task={t} />)
     return (
       <div>
         <h1>My tasks</h1>
         <div>{OpenTasksList}</div>
-        <NewTask />
+        <NewTask onChange={(task) => this.addNewTask(task)} />
         <h1>Done</h1>
         <div>{ClosedTasksList}</div>
       </div>)
