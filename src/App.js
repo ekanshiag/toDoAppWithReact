@@ -7,19 +7,20 @@ import NewTask from './NewTask.js'
 class App extends Component {
   constructor () {
     super()
-    let allTasks = []
+    let allTasks = [], id = 0
     if (localStorage.getItem('tasks') !== null) {
       allTasks = JSON.parse(localStorage.getItem('tasks'))
+      id = allTasks[0].id + 1
     }
     this.state = {
       allTasks: allTasks,
-      taskId: 0
+      taskId: id
     }
   }
   addNewTask (task) {
     let tasks = this.state.allTasks.slice()
     let id = this.state.taskId
-    tasks.unshift({'id': id, 'desc': task, 'category': 'open'})
+    tasks.unshift({'id': id, 'desc': task, 'category': 'open', 'notes': '', 'dueDate': '', 'priority': ''})
     localStorage.setItem('tasks', JSON.stringify(tasks))
     this.setState({allTasks: tasks, taskId: id + 1})
   }

@@ -39,7 +39,11 @@ class OpenTasks extends Component {
         />
         <TaskDesc task={this.props.task.desc} onUpdate={(updatedTask) => this.changeTask(updatedTask)} />
         <button onClick={() => this.changeOptionsView()}>^</button>
-        {this.state.showOptions ? <Options /> : ''}
+        {this.state.showOptions ? <Options
+          notes={this.props.task.notes}
+          dueDate={this.props.task.dueDate}
+          priority={this.props.task.priority}
+        	/> : ''}
         <button onClick={() => this.deleteTask()}>X</button>
       </div>
     )
