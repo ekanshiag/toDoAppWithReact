@@ -23,7 +23,6 @@ class OpenTasks extends Component {
   }
 
   changeTaskDue (updatedDue) {
-  	console.log(updatedDue)
   	this.props.updateTaskDue(this.props.task.id, updatedDue)
   }
 

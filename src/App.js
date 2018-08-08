@@ -45,7 +45,6 @@ class App extends Component {
     let tasks = this.state.allTasks.slice()
     let changedIndex = tasks.findIndex((t) => { return t.id === id })
     tasks[changedIndex].notes = newNotes
-    console.log(tasks[changedIndex].notes)
     localStorage.setItem('tasks', JSON.stringify(tasks))
     this.setState({allTasks: tasks})
   }
