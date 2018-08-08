@@ -9,7 +9,8 @@ class Options extends Component {
           id='taskNote'
           disabled={!this.props.editable}
           onChange={(event) => this.props.onUpdateNotes(event.target.value)}
-        >{this.props.notes}</textarea>
+          value={this.props.notes}
+        />
         <label id='dueLabel' htmlFor='taskDueDate'>Due Date</label>
         <input
           type='Date'
