@@ -29,7 +29,7 @@ class ClosedTasks extends Component {
           type='checkbox'
           value={this.props.task.desc}
           onClick={() => this.markTaskOpen()}
-          checked />
+          defaultChecked />
         <label>{this.props.task.desc}</label>
         <button onClick={() => this.changeOptionsView()}>^</button>
         {this.state.showOptions ? <Options

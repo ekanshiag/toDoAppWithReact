@@ -26,6 +26,7 @@ class Options extends Component {
           disabled={!this.props.editable}
           onChange={(event) => this.props.onUpdatePrior(event.target.value)}
         >
+          <option value='' disabled>Please select one</option>
           <option value='Low'>Low</option>
           <option value='Medium'>Medium</option>
           <option value='High'>High</option>

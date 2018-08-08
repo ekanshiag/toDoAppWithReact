@@ -58,7 +58,6 @@ class App extends Component {
   }
 
   onUpdateTaskPrior (id, newPrior) {
-    console.log(newPrior)
     let tasks = this.state.allTasks.slice()
     let changedIndex = tasks.findIndex((t) => { return t.id === id })
     tasks[changedIndex].priority = newPrior
