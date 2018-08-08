@@ -15,9 +15,21 @@ class OpenTasks extends Component {
   }
 
   changeTask (updatedTask) {
-  	this.props.updateTask(this.props.task.id, updatedTask)
+  	this.props.updateTaskDesc(this.props.task.id, updatedTask)
   }
 
+  changeTaskNotes (updatedNotes) {
+  	this.props.updateTaskNotes(this.props.task.id, updatedNotes)
+  }
+
+  changeTaskDue (updatedDue) {
+  	console.log(updatedDue)
+  	this.props.updateTaskDue(this.props.task.id, updatedDue)
+  }
+
+  changeTaskPrior (updatedPrior) {
+  	this.props.updateTaskPrior(this.props.task.id, updatedPrior)
+  }
   deleteTask () {
   	this.props.onDelete(this.props.task.id)
   }
@@ -44,6 +56,9 @@ class OpenTasks extends Component {
           dueDate={this.props.task.dueDate}
           priority={this.props.task.priority}
           editable
+          onUpdateNotes={(updatedNotes) => this.changeTaskNotes(updatedNotes)}
+          onUpdateDue={(updatedDue) => this.changeTaskDue(updatedDue)}
+          onUpdatePrior={(updatedPrior) => this.changeTaskPrior(updatedPrior)}
         /> : ''}
         <button onClick={() => this.deleteTask()}>X</button>
       </div>

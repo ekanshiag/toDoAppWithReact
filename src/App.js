@@ -33,10 +33,36 @@ class App extends Component {
     this.setState({allTasks: tasks})
   }
 
-  onUpdateTask (id, newDesc) {
+  onUpdateTaskDesc (id, newDesc) {
     let tasks = this.state.allTasks.slice()
     let changedIndex = tasks.findIndex((t) => { return t.id === id })
     tasks[changedIndex].desc = newDesc
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    this.setState({allTasks: tasks})
+  }
+
+  onUpdateTaskNotes (id, newNotes) {
+    let tasks = this.state.allTasks.slice()
+    let changedIndex = tasks.findIndex((t) => { return t.id === id })
+    tasks[changedIndex].notes = newNotes
+    console.log(tasks[changedIndex].notes)
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    this.setState({allTasks: tasks})
+  }
+
+  onUpdateTaskDue (id, newDue) {
+    let tasks = this.state.allTasks.slice()
+    let changedIndex = tasks.findIndex((t) => { return t.id === id })
+    tasks[changedIndex].dueDate = newDue
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    this.setState({allTasks: tasks})
+  }
+
+  onUpdateTaskPrior (id, newPrior) {
+    console.log(newPrior)
+    let tasks = this.state.allTasks.slice()
+    let changedIndex = tasks.findIndex((t) => { return t.id === id })
+    tasks[changedIndex].priority = newPrior
     localStorage.setItem('tasks', JSON.stringify(tasks))
     this.setState({allTasks: tasks})
   }
@@ -54,7 +80,10 @@ class App extends Component {
       key={t.id}
       task={t}
       onCompletion={(id) => this.onClickingTaskCheckbox(id)}
-      updateTask={(id, newDesc) => this.onUpdateTask(id, newDesc)}
+      updateTaskDesc={(id, newDesc) => this.onUpdateTaskDesc(id, newDesc)}
+      updateTaskNotes={(id, newNotes) => this.onUpdateTaskNotes(id, newNotes)}
+      updateTaskDue={(id, newDue) => this.onUpdateTaskDue(id, newDue)}
+      updateTaskPrior={(id, newPrior) => this.onUpdateTaskPrior(id, newPrior)}
       onDelete={(id) => this.deleteTask(id)} />)
     const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' }
     ).map((t) => <ClosedTasks

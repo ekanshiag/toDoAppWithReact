@@ -7,25 +7,27 @@ class Options extends Component {
         <label id='noteLabel' htmlFor='taskNote'>Notes</label>
         <textarea
           id='taskNote'
-          textContent={this.props.notes}
           disabled={!this.props.editable}
-        />
+          onChange={(event) => this.props.onUpdateNotes(event.target.value)}
+        >{this.props.notes}</textarea>
         <label id='dueLabel' htmlFor='taskDueDate'>Due Date</label>
         <input
           type='Date'
           id='taskDueDate'
           value={this.props.dueDate}
           disabled={!this.props.editable}
+          onChange={(event) => this.props.onUpdateDue(event.target.value)}
         />
         <label id='priorLabel' htmlFor='taskPriority'>Priority</label>
         <select
           id='taskPriority'
           value={this.props.priority}
           disabled={!this.props.editable}
+          onChange={(event) => this.props.onUpdatePrior(event.target.value)}
         >
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
+          <option value='Low'>Low</option>
+          <option value='Medium'>Medium</option>
+          <option value='High'>High</option>
         </select>
       </div>
     )
