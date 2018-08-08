@@ -12,19 +12,29 @@ class App extends Component {
       allTasks = JSON.parse(localStorage.getItem('tasks'))
     }
     this.state = {
-      allTasks: allTasks
+      allTasks: allTasks,
+      taskId: 0
     }
   }
   addNewTask (task) {
     let tasks = this.state.allTasks.slice()
-    tasks.push({'desc': task, 'category': 'open'})
+    let id = this.state.taskId
+    tasks.push({'id': id, 'desc': task, 'category': 'open'})
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    this.setState({allTasks: tasks, taskId: id + 1})
+  }
+
+  onClickingTaskCheckbox (checkedTaskId) {
+    let tasks = this.state.allTasks.slice()
+    let changedIndex = tasks.findIndex((t) => { return t.id === checkedTaskId })
+    tasks[changedIndex].category = tasks[changedIndex].category === 'open' ? 'closed' : 'open'
     localStorage.setItem('tasks', JSON.stringify(tasks))
     this.setState({allTasks: tasks})
   }
   render () {
     const tasks = this.state.allTasks.slice()
-    const OpenTasksList = tasks.filter(t => { return t.category === 'open' }).map((t, i) => <OpenTasks key={i} task={t} />)
-    const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' }).map((t, i) => <ClosedTasks key={i} task={t} />)
+    const OpenTasksList = tasks.filter(t => { return t.category === 'open' }).map((t) => <OpenTasks key={t.id} task={t} onCompletion={(id) => this.onClickingTaskCheckbox(id)} />)
+    const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' }).map((t) => <ClosedTasks key={t.id} task={t} onUndo={(id) => this.onClickingTaskCheckbox(id)} />)
     return (
       <div>
         <h1>My tasks</h1>
