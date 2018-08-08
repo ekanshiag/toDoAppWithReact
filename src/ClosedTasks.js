@@ -31,7 +31,12 @@ class ClosedTasks extends Component {
           onClick={() => this.markTaskOpen()} />
         <label>{this.props.task.desc}</label>
         <button onClick={() => this.changeOptionsView()}>^</button>
-        {this.state.showOptions ? <Options /> : ''}
+        {this.state.showOptions ? <Options
+          notes={this.props.task.notes}
+          dueDate={this.props.task.dueDate}
+          priority={this.props.task.priority}
+          editable={false}
+        /> : ''}
         <button onClick={() => this.deleteTask()}>X</button>
       </div>
     )

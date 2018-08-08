@@ -43,7 +43,8 @@ class OpenTasks extends Component {
           notes={this.props.task.notes}
           dueDate={this.props.task.dueDate}
           priority={this.props.task.priority}
-        	/> : ''}
+          editable
+        /> : ''}
         <button onClick={() => this.deleteTask()}>X</button>
       </div>
     )

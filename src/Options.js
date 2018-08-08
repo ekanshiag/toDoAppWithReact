@@ -4,21 +4,24 @@ class Options extends Component {
   render () {
     return (
       <div>
-        <label id='noteLabel' for='taskNote'>Notes</label>
+        <label id='noteLabel' htmlFor='taskNote'>Notes</label>
         <textarea
           id='taskNote'
           textContent={this.props.notes}
+          disabled={!this.props.editable}
         />
-        <label id='dueLabel' for='taskDueDate'>Due Date</label>
+        <label id='dueLabel' htmlFor='taskDueDate'>Due Date</label>
         <input
           type='Date'
           id='taskDueDate'
           value={this.props.dueDate}
+          disabled={!this.props.editable}
         />
-        <label id='priorLabel' for='taskPriority'>Priority</label>
+        <label id='priorLabel' htmlFor='taskPriority'>Priority</label>
         <select
           id='taskPriority'
           value={this.props.priority}
+          disabled={!this.props.editable}
         >
           <option>Low</option>
           <option>Medium</option>
