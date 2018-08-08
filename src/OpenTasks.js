@@ -11,6 +11,10 @@ class OpenTasks extends Component {
   	this.props.updateTask(this.props.task.id, updatedTask)
   }
 
+  deleteTask () {
+  	this.props.onDelete(this.props.task.id)
+  }
+
   render () {
     return (
       <div>
@@ -20,7 +24,7 @@ class OpenTasks extends Component {
           onClick={() => this.markTaskComplete()}
         />
         <TaskDesc task={this.props.task.desc} onUpdate={(updatedTask) => this.changeTask(updatedTask)} />
-
+        <button onClick={() => this.deleteTask()}>X</button>
       </div>
     )
   }
