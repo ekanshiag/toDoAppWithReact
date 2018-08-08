@@ -19,7 +19,7 @@ class App extends Component {
   addNewTask (task) {
     let tasks = this.state.allTasks.slice()
     let id = this.state.taskId
-    tasks.push({'id': id, 'desc': task, 'category': 'open'})
+    tasks.unshift({'id': id, 'desc': task, 'category': 'open'})
     localStorage.setItem('tasks', JSON.stringify(tasks))
     this.setState({allTasks: tasks, taskId: id + 1})
   }
