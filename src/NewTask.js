@@ -4,7 +4,12 @@ import './NewTask.css'
 class NewTask extends Component {
   onAddNewTask (event) {
   	if (event.key === 'Enter') {
-  		this.props.onChange(event.target.value)
+  		let taskValue = event.target.value.trim()
+  		if (/\w+/.test(taskValue)) {
+        this.props.onChange(taskValue)
+  		} else {
+  			alert('Invalid task')
+  		}
   		event.target.value = ''
     }
   }

@@ -19,7 +19,12 @@ class TaskDesc extends Component {
   		this.setState({
   	  		editTask: false
   	  	})
-  	  	this.props.onUpdate(event.target.value)
+  	  	let taskValue = event.target.value.trim()
+  		if (/\w+/.test(taskValue)) {
+        this.props.onUpdate(taskValue)
+  		} else {
+  			alert('Invalid task')
+  		}
   	  }
   }
 
