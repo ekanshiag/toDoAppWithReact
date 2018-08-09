@@ -1,0 +1,22 @@
+.completedTasks {
+  border: 3px solid #adbdd1;
+  border-radius: 1em;
+  background-color: #dee5ed;
+  box-sizing: content-box;
+  margin: 0.5em;
+  padding: 1em;
+}
+
+#taskDesc {
+    text-decoration: line-through;
+  }
+  .completedTasks > input, .completedTasks > label {
+    padding: 15px;
+  }
+  .completedTasks button {
+    padding: 0;
+    float: right;
+  }
+  .completedTasks #delete {
+  	color: red;
+  }

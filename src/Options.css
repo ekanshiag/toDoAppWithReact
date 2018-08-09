@@ -1,0 +1,30 @@
+.optionsView {
+    display: grid;
+    grid-template-columns:2fr 1fr;
+    column-gap: 10px;
+  }
+  .optionsView #noteLabel {
+    grid-column:1;
+    grid-row:1;
+  }
+  .optionsView #taskNote {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    grid-column:1;
+    grid-row: 2/5;
+  }
+  .optionsView #dueLabel {
+    grid-column:2;
+    grid-row:1;
+  }
+  .optionsView #taskdueDate {
+    grid-column:2;
+    grid-row: 2;
+  }
+  .optionsView #priorLabel {
+    grid-column:2;
+    grid-row: 3;
+  }
+  .optionsView #taskPriority {
+    grid-column:2;
+    grid-row: 4;
+  }

@@ -42,7 +42,7 @@ class OpenTasks extends Component {
 
   render () {
     return (
-      <div>
+      <div className='myTasks'>
         <input
           type='checkbox'
           value={this.props.task.desc}
@@ -50,6 +50,9 @@ class OpenTasks extends Component {
         />
         <TaskDesc task={this.props.task.desc} onUpdate={(updatedTask) => this.changeTask(updatedTask)} />
         <button onClick={() => this.changeOptionsView()}>^</button>
+        <button
+          id='delete'
+          onClick={() => this.deleteTask()}>X</button>
         {this.state.showOptions ? <Options
           notes={this.props.task.notes}
           dueDate={this.props.task.dueDate}
@@ -59,7 +62,6 @@ class OpenTasks extends Component {
           onUpdateDue={(updatedDue) => this.changeTaskDue(updatedDue)}
           onUpdatePrior={(updatedPrior) => this.changeTaskPrior(updatedPrior)}
         /> : ''}
-        <button onClick={() => this.deleteTask()}>X</button>
       </div>
     )
   }

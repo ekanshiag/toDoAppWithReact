@@ -73,24 +73,24 @@ class App extends Component {
   }
   render () {
     const tasks = this.state.allTasks.slice()
-    const OpenTasksList = tasks.filter(t => { return t.category === 'open' }
-    ).map((t) => <OpenTasks
-      key={t.id}
-      task={t}
-      onCompletion={(id) => this.onClickingTaskCheckbox(id)}
-      updateTaskDesc={(id, newDesc) => this.onUpdateTaskDesc(id, newDesc)}
-      updateTaskNotes={(id, newNotes) => this.onUpdateTaskNotes(id, newNotes)}
-      updateTaskDue={(id, newDue) => this.onUpdateTaskDue(id, newDue)}
-      updateTaskPrior={(id, newPrior) => this.onUpdateTaskPrior(id, newPrior)}
-      onDelete={(id) => this.deleteTask(id)} />)
-    const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' }
-    ).map((t) => <ClosedTasks
-      key={t.id}
-      task={t}
-      onUndo={(id) => this.onClickingTaskCheckbox(id)}
-      onDelete={(id) => this.deleteTask(id)} />)
+    const OpenTasksList = tasks.filter(t => { return t.category === 'open' })
+      .map((t) => <OpenTasks
+        key={t.id}
+        task={t}
+        onCompletion={(id) => this.onClickingTaskCheckbox(id)}
+        updateTaskDesc={(id, newDesc) => this.onUpdateTaskDesc(id, newDesc)}
+        updateTaskNotes={(id, newNotes) => this.onUpdateTaskNotes(id, newNotes)}
+        updateTaskDue={(id, newDue) => this.onUpdateTaskDue(id, newDue)}
+        updateTaskPrior={(id, newPrior) => this.onUpdateTaskPrior(id, newPrior)}
+        onDelete={(id) => this.deleteTask(id)} />)
+    const ClosedTasksList = tasks.filter(t => { return t.category === 'closed' })
+      .map((t) => <ClosedTasks
+        key={t.id}
+        task={t}
+        onUndo={(id) => this.onClickingTaskCheckbox(id)}
+        onDelete={(id) => this.deleteTask(id)} />)
     return (
-      <div>
+      <div className='App'>
         <h1>My tasks</h1>
         <div>{OpenTasksList}</div>
         <NewTask onChange={(task) => this.addNewTask(task)} />

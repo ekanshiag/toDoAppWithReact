@@ -24,21 +24,23 @@ class ClosedTasks extends Component {
   }
   render () {
     return (
-      <div>
+      <div className='completedTasks'>
         <input
           type='checkbox'
           value={this.props.task.desc}
           onClick={() => this.markTaskOpen()}
           defaultChecked />
-        <label>{this.props.task.desc}</label>
+        <label id='taskDesc'>{this.props.task.desc}</label>
         <button onClick={() => this.changeOptionsView()}>^</button>
+        <button
+          id='delete'
+          onClick={() => this.deleteTask()}>X</button>
         {this.state.showOptions ? <Options
           notes={this.props.task.notes}
           dueDate={this.props.task.dueDate}
           priority={this.props.task.priority}
           editable={false}
         /> : ''}
-        <button onClick={() => this.deleteTask()}>X</button>
       </div>
     )
   }

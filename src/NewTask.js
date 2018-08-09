@@ -11,6 +11,7 @@ class NewTask extends Component {
   render () {
     return (
       <input
+        className='newTask'
         type='text'
         placeholder='+   New Task'
         onKeyPress={(event) => this.onAddNewTask(event)}
