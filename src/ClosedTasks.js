@@ -13,14 +13,14 @@ class ClosedTasks extends Component {
     this.props.onUndo(this.props.task.id)
   }
   deleteTask () {
-  	this.props.onDelete(this.props.task.id)
+    this.props.onDelete(this.props.task.id)
   }
 
   changeOptionsView () {
-  	let showOptionsState = this.state.showOptions
-  	this.setState({
-  		showOptions: !showOptionsState
-  	})
+    let showOptionsState = this.state.showOptions
+    this.setState({
+      showOptions: !showOptionsState
+    })
   }
   render () {
     return (
@@ -31,10 +31,10 @@ class ClosedTasks extends Component {
           onClick={() => this.markTaskOpen()}
           defaultChecked />
         <label id='taskDesc'>{this.props.task.desc}</label>
-        <button onClick={() => this.changeOptionsView()}>^</button>
         <button
           id='delete'
           onClick={() => this.deleteTask()}>X</button>
+        <button onClick={() => this.changeOptionsView()}>^</button>
         {this.state.showOptions ? <Options
           notes={this.props.task.notes}
           dueDate={this.props.task.dueDate}

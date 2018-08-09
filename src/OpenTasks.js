@@ -15,29 +15,29 @@ class OpenTasks extends Component {
   }
 
   changeTask (updatedTask) {
-  	this.props.updateTaskDesc(this.props.task.id, updatedTask)
+    this.props.updateTaskDesc(this.props.task.id, updatedTask)
   }
 
   changeTaskNotes (updatedNotes) {
-  	this.props.updateTaskNotes(this.props.task.id, updatedNotes)
+    this.props.updateTaskNotes(this.props.task.id, updatedNotes)
   }
 
   changeTaskDue (updatedDue) {
-  	this.props.updateTaskDue(this.props.task.id, updatedDue)
+    this.props.updateTaskDue(this.props.task.id, updatedDue)
   }
 
   changeTaskPrior (updatedPrior) {
-  	this.props.updateTaskPrior(this.props.task.id, updatedPrior)
+    this.props.updateTaskPrior(this.props.task.id, updatedPrior)
   }
   deleteTask () {
-  	this.props.onDelete(this.props.task.id)
+    this.props.onDelete(this.props.task.id)
   }
 
   changeOptionsView () {
-  	let showOptionsState = this.state.showOptions
-  	this.setState({
-  		showOptions: !showOptionsState
-  	})
+    let showOptionsState = this.state.showOptions
+    this.setState({
+      showOptions: !showOptionsState
+    })
   }
 
   render () {
@@ -49,10 +49,10 @@ class OpenTasks extends Component {
           onClick={() => this.markTaskComplete()}
         />
         <TaskDesc task={this.props.task.desc} onUpdate={(updatedTask) => this.changeTask(updatedTask)} />
-        <button onClick={() => this.changeOptionsView()}>^</button>
         <button
           id='delete'
           onClick={() => this.deleteTask()}>X</button>
+        <button onClick={() => this.changeOptionsView()}>^</button>
         {this.state.showOptions ? <Options
           notes={this.props.task.notes}
           dueDate={this.props.task.dueDate}
