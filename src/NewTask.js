@@ -1,27 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './NewTask.css'
 
-class NewTask extends Component {
-  onAddNewTask (event) {
-  	if (event.key === 'Enter') {
-  		let taskValue = event.target.value.trim()
-  		if (/\w+/.test(taskValue)) {
-        this.props.onChange(taskValue)
-  		} else {
-  			alert('Invalid task')
-  		}
-  		event.target.value = ''
-    }
-  }
-  render () {
-    return (
-      <input
-        className='newTask'
-        type='text'
-        placeholder='+   New Task'
-        onKeyPress={(event) => this.onAddNewTask(event)}
-      />)
+function onAddNewTask (event, fn) {
+  if (event.key === 'Enter') {
+    let taskValue = event.target.value.trim()
+  	if (/\w+/.test(taskValue)) {
+      fn(taskValue)
+  	} else {
+  		alert('Invalid task')
+  	}
+  	event.target.value = ''
   }
 }
 
-export default NewTask
+export default function NewTask (props) {
+  return (
+    <input
+      className='newTask'
+      type='text'
+      placeholder='+   New Task'
+      onKeyPress={(event) => onAddNewTask(event, props.onChange)}
+    />)
+}
