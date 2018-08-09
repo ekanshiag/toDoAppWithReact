@@ -16,6 +16,7 @@ export default function Options (props) {
         type='Date'
         id='taskDueDate'
         value={props.dueDate}
+        min={new Date().toJSON().split('T')[0]}
         disabled={!props.editable}
         onChange={(event) => props.onUpdateDue(event.target.value)}
       />
