@@ -10,10 +10,32 @@ class ClosedTasks extends Component {
     }
   }
   markTaskOpen () {
-    this.props.onUndo(this.props.task.id)
+    var data = {
+      'category': 'Open'
+    }
+
+    var myInit = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+    
+    fetch('http://localhost:3000/closedTasks/patch/' + this.props.task._id, myInit)
+      .then(response => {
+        this.props.onUpdate()
+      })
   }
   deleteTask () {
-    this.props.onDelete(this.props.task.id)
+    var myInit = {
+      method: "POST"
+    }
+
+    fetch('http://localhost:3000/closedTasks/delete/' + this.props.task._id, myInit)
+      .then(response => {
+        this.props.onUpdate()
+      })
   }
 
   changeOptionsView () {

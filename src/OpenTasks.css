@@ -17,3 +17,7 @@
   .myTasks #delete {
   	color: red;
   }
+  .myTasks #dateLabel {
+    color: grey;
+    float: right;
+  }

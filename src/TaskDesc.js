@@ -21,7 +21,22 @@ class TaskDesc extends Component {
   	  	})
   	  	let taskValue = event.target.value.trim()
   		if (/\w+/.test(taskValue)) {
-        this.props.onUpdate(taskValue)
+        var data = {
+          'desc': taskValue
+        }
+
+        var myInit = {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }
+
+        fetch('http://localhost:3000/openTasks/patch/' + this.props.id, myInit)
+          .then(response => {
+            this.props.onUpdate()
+          })
   		} else {
   			alert('Invalid task')
   		}

@@ -28,3 +28,7 @@
     grid-column:2;
     grid-row: 4;
   }
+  .optionsView #saveButton {
+    grid-column: 2;
+    box-sizing: content-box;
+  }

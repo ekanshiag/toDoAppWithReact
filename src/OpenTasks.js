@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './OpenTasks.css'
 import TaskDesc from './TaskDesc.js'
 import Options from './Options.js'
+import moment from 'moment'
 
 class OpenTasks extends Component {
   constructor () {
@@ -11,26 +12,33 @@ class OpenTasks extends Component {
     }
   }
   markTaskComplete () {
-    this.props.onCompletion(this.props.task.id)
+    var data = {
+      'category': 'Closed'
+    }
+
+    var myInit = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+    
+    fetch('http://localhost:3000/openTasks/patch/' + this.props.task._id, myInit)
+      .then(response => {
+        this.props.onUpdate()
+      })
   }
 
-  changeTask (updatedTask) {
-    this.props.updateTaskDesc(this.props.task.id, updatedTask)
-  }
-
-  changeTaskNotes (updatedNotes) {
-    this.props.updateTaskNotes(this.props.task.id, updatedNotes)
-  }
-
-  changeTaskDue (updatedDue) {
-    this.props.updateTaskDue(this.props.task.id, updatedDue)
-  }
-
-  changeTaskPrior (updatedPrior) {
-    this.props.updateTaskPrior(this.props.task.id, updatedPrior)
-  }
   deleteTask () {
-    this.props.onDelete(this.props.task.id)
+    var myInit = {
+      method: "POST"
+    }
+
+    fetch('http://localhost:3000/openTasks/delete/' + this.props.task._id, myInit)
+      .then(response => {
+        this.props.onUpdate()
+      })
   }
 
   changeOptionsView () {
@@ -41,6 +49,8 @@ class OpenTasks extends Component {
   }
 
   render () {
+    let date = this.props.task.dueDate
+    let momentDate = moment(date).format('dddd, MMMM Do YYYY')
     return (
       <div className='myTasks'>
         <input
@@ -48,20 +58,19 @@ class OpenTasks extends Component {
           value={this.props.task.desc}
           onClick={() => this.markTaskComplete()}
         />
-        <TaskDesc task={this.props.task.desc} onUpdate={(updatedTask) => this.changeTask(updatedTask)} />
+        <TaskDesc id = {this.props.task._id} task={this.props.task.desc} onUpdate={this.props.onUpdate} />
         <button
           id='delete'
           onClick={() => this.deleteTask()}>X</button>
         <button onClick={() => this.changeOptionsView()}>^</button>
         {this.state.showOptions ? <Options
+          id={this.props.task._id}
           notes={this.props.task.notes}
           dueDate={this.props.task.dueDate}
           priority={this.props.task.priority}
           editable
-          onUpdateNotes={(updatedNotes) => this.changeTaskNotes(updatedNotes)}
-          onUpdateDue={(updatedDue) => this.changeTaskDue(updatedDue)}
-          onUpdatePrior={(updatedPrior) => this.changeTaskPrior(updatedPrior)}
-        /> : ''}
+          onUpdate = {this.props.onUpdate}
+        /> : <label id= 'dateLabel'>{momentDate !== 'Invalid date' ? momentDate : ''}</label>}
       </div>
     )
   }
